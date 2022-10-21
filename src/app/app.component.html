@@ -4,7 +4,8 @@
     <li class="page-item" [appClass]="{disabled:currentPage ===0}">
       <a class="page-link" (click)="currentPage=currentPage-1">&laquo;</a>
     </li>
-    <ng-container *ngFor="let image of images;let i = index">
+    <!-- <ng-container *ngFor="let image of images;let i = index"> -->
+    <ng-container *appTimes="images.length;let i =index">
       <!-- <li [ngClass]="{active :i === currentPage}" class="page-item" *ngIf="CheckWindowIndex(i)"> -->
       <li [appClass]="{active :i === currentPage}" class="page-item" *ngIf="CheckWindowIndex(i)">
         <a class="page-link" (click)="currentPage=i">{{i+1}}</a>
@@ -24,11 +25,17 @@
   <img [src]="images[currentPage].url">
 </div>
 
-<dir [ngSwitch]="currentPage">
+<div [ngSwitch]="currentPage">
   <div *ngSwitchCase="0">
-    Current
+    Current ngSwitch
   </div>
   <div *ngSwitchDefault="">
-    Default
+    Default ngSwitch
   </div>
-</dir>
+</div>
+
+<ul *appTimes="5">
+  <li>
+    Structural Directive
+  </li>
+</ul>
